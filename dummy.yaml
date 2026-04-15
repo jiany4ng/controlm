@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{job_yaml_file_params:jobname}}
+spec:
+  template:
+    spec:
+      containers:
+      - name: busybox0
+        image: curlimages/curl
+        command: ["sh", "-c", "echo Hello {{job_yaml_file_params:echo}}"]
+      restartPolicy: Never
+  backoffLimit: 4
